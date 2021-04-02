@@ -1,9 +1,13 @@
 #include "window.h"
 
 GLFWwindow* Window::window;
+int Window::width = 0;
+int Window::height = 0;
 
-int Window::Initialize(int width, int heigh, std::string name)
+int Window::Initialize(int width, int height, std::string name)
 {
+  Window::width = width;
+  Window::height = height;
   glfwInit();
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -13,7 +17,7 @@ int Window::Initialize(int width, int heigh, std::string name)
 	glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 	glfwWindowHint(GLFW_SAMPLES, 8);
 
-	Window::window = glfwCreateWindow(width, heigh, name.c_str(), nullptr, nullptr);
+	Window::window = glfwCreateWindow(width, height, name.c_str(), nullptr, nullptr);
 	if (window == nullptr)
 	{
 		std::cerr << "Failed to create GLFW Window" << std::endl;
@@ -21,6 +25,7 @@ int Window::Initialize(int width, int heigh, std::string name)
 		return -1;
 	}
 	glfwMakeContextCurrent(Window::window);
+  glViewport(0, 0, width, height);
 
 	if (glewInit() != GLEW_OK)
 	{

@@ -10,7 +10,8 @@ private:
   static GLFWwindow* window;
 
 public:
-  static int Initialize(int width, int heigh, std::string name);
+  static int width, height; 
+  static int Initialize(int width, int height, std::string name);
   static int ShouldClose();
   static void SwapBuffers();
   static void PollEvents();

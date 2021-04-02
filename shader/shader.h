@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <glm/glm.hpp>
 
 class Shader
 {
@@ -17,5 +18,6 @@ public:
   Shader(std::string vertexFile, std::string fragmentFile);
   void uniform4f(std::string name, float a, float b, float c, float d);
   void uniform1i(std::string name, int a);
+  void uniformMatrix4f(std::string name, glm::mat4 mat);
   void use();
 };
